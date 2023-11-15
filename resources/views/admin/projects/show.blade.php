@@ -24,6 +24,24 @@
             {{-- right column with description and links --}}
             <div class="col">
                 <div>
+                    <div>
+                        <h5>
+                            Technologies Used:
+                        </h5>
+                        @forelse ($project->technologies as $technology)
+                            <span class="text-info fw-semibold">
+                                {{ $technology->name }}
+                            </span>
+                            <span>
+                                /
+                            </span>
+                        @empty
+                            <span class="fw-semibold text-info">
+                                No technology listed
+                            </span>
+                        @endforelse
+
+                    </div>
                     <h5 class="py-3">
                         Type:
                         <span class="text-info">
