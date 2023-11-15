@@ -53,6 +53,17 @@
                 </select>
             </div>
 
+            {{-- technologies --}}
+            <div class="list-group pb-2" id="technologies">
+                <label for="technologies" class="form-label fw-bold">Used Technology</label>
+                @foreach ($technologies as $technology)
+                    <label class="list-group-item w-25">
+                        <input class="form-check-input" type="checkbox" value="{{ $technology->id }}" name="technologies[]">
+                        {{ $technology->name }}
+                    </label>
+                @endforeach
+            </div>
+
             {{-- git link --}}
             <div class="mb-3">
                 <label for="git_link" class="form-label fw-bold">GitHub</label>
