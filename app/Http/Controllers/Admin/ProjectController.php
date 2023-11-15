@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use illuminate\Support\Str;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -45,6 +48,7 @@ class ProjectController extends Controller
         $val_data['slug'] = Str::slug($request->title, '-');
 
         $newProject = Project::create($val_data);
+        $newProject->technologies()->attach($request->technologies);
 
         return to_route('admin.projects.show', $newProject)->with('message', 'You created a new project!');
     }
@@ -63,7 +67,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -93,6 +98,12 @@ class ProjectController extends Controller
 
         $project->update($val_data);
 
+        if ($request->has('technologies')) {
+
+            $project->technologies()->sync($request->technologies);
+        }
+
+
         return to_route('admin.projects.show', $project)->with('message', 'Project updated!');
     }
 
@@ -103,8 +114,10 @@ class ProjectController extends Controller
     {
 
         if (!is_null($project->cover_image)) {
-            Storage::delete($project->cover_image);
+            Storage::delete('cover_images/' . $project->cover_image);
         }
+
+        $project->technologies()->detach();
 
         $project->delete();
 

@@ -30,6 +30,7 @@ class UpdateProjectRequest extends FormRequest
             'git_link' => 'nullable|min:10',
             'project_link' => 'nullable|min:5',
             'type_id' => 'nullable',
+            'technologies' => 'nullable'
         ];
     }
 }
