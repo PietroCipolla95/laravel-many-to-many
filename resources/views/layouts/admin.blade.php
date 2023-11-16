@@ -76,7 +76,24 @@
                                 </span>
                             </a>
                         </button>
-
+                        <button class="btn btn-secondary btn-outline-info my-3">
+                            <a href="{{ route('admin.technologies.index') }}"
+                                class="text-decoration-none fs-5 text-light">
+                                <i class="fa-solid fa-microchip"></i>
+                                <span>
+                                    Technologies
+                                </span>
+                            </a>
+                        </button>
+                        <button class="btn btn-secondary btn-outline-info">
+                            <a href="{{ route('admin.technologies.create') }}"
+                                class="text-decoration-none fs-5 text-light">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                                <span>
+                                    Create Technology
+                                </span>
+                            </a>
+                        </button>
 
                     </div>
                 </div>
