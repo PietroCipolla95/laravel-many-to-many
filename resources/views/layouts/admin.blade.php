@@ -60,6 +60,23 @@
                                 </span>
                             </a>
                         </button>
+                        <button class="btn btn-secondary btn-outline-info my-3">
+                            <a href="{{ route('admin.types.index') }}" class="text-decoration-none fs-5 text-light">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                <span>
+                                    Types
+                                </span>
+                            </a>
+                        </button>
+                        <button class="btn btn-secondary btn-outline-info">
+                            <a href="{{ route('admin.types.create') }}" class="text-decoration-none fs-5 text-light">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                                <span>
+                                    Create Type
+                                </span>
+                            </a>
+                        </button>
+
 
                     </div>
                 </div>
